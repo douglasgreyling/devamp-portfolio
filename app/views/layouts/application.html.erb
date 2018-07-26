@@ -14,17 +14,28 @@
   </head>
 
   <body class="text-center">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
-    <%= render "shared/nav", location: 'top' %>
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <% if notice %>
+        <p class="notice"><%= notice %></p>
+      <% elsif alert %>
+        <p class="alert"><%= alert %></p>
+      <% end %>
 
-    <%= login_helper %>
+      <%= render "shared/application_nav"%>
 
-    <%= yield %>
+      <%= login_helper %>
 
-    <%= copyright_generator %>
+      <%= yield %>
 
-    <%= source_helper("application") %>
+      <%= source_helper("application") %>
+      
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+          <%= copyright_generator %>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
