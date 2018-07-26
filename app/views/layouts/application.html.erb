@@ -22,20 +22,14 @@
         <p class="alert"><%= alert %></p>
       <% end %>
 
-      <%= render "shared/application_nav"%>
-
-      <%= login_helper %>
+      <%= render "shared/application_nav" %>
 
       <%= yield %>
+      
+      <%= render 'shared/application_footer' %>
 
       <%= source_helper("application") %>
-      
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-          <%= copyright_generator %>
-        </div>
-      </footer>
+
     </div>
   </body>
 </html>
