@@ -1,17 +1,24 @@
 <div class="col-sm-8 blog-main">
 
-    <h2><%= @blog.title %></h2>
-    <%= link_to 'Edit', edit_blog_path(@blog) if logged_in?(:site_admin) %> |
+  <h2><%= @blog.title %></h2>
+  
+  <%= link_to 'Edit', edit_blog_path(@blog) if logged_in?(:site_admin) %> |
 
-    <p>
-      <%= @blog.body %>
-    </p>
+  <p>
+    <%= @blog.body %>
+  </p>
 
-  <nav class="blog-pagination">
-    <a class="btn btn-outline-primary" href="#">Older</a>
-    <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
-  </nav>
+  <% unless current_user.is_a? GuestUser %>
+    <%= form_with(model: @comment, local: true) do |f| %>
 
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_area :content, class: "form-control" %>
+      </div>
+
+      <%= f.submit "Post Comment" , class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
+
+  <%= render @blog.comments %>
 </div>
-
-<%= link_to 'Back', blogs_path %>
